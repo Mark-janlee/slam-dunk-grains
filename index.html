@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slam Dunk Grains – Sintang Ballers Cooperative</title>
+<style>
+:root{--bg:#d9a566;--card:#fff4e0;--ink:#1a1a2e;--mut:#4a3a26;--line:#c08a4e;--acc:#e8590c;--ok:#1f7a3a;--bad:#c0261c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#24160b;--card:#2f2012;--ink:#fbead0;--mut:#b9a07c;--line:#4a3220;--acc:#ff8a3d;--ok:#7cc48a;--bad:#ff7a6e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#24160b;--card:#2f2012;--ink:#fbead0;--mut:#b9a07c;--line:#4a3220;--acc:#ff8a3d;--ok:#7cc48a;--bad:#ff7a6e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:repeating-linear-gradient(90deg,transparent 0 63px,var(--line) 63px 65px);color:var(--ink);font:16px/1.4 Georgia,"Times New Roman",serif}
+.wrap{max-width:680px;margin:0 auto;padding:16px}
+h1{font-size:21px;margin:4px 0 2px}.sub{color:var(--mut);font-size:13px;margin:0 0 14px;font-style:italic}
+h2{font-size:14px;margin:0 0 6px;text-transform:uppercase;letter-spacing:1px}
+.card{background:var(--card);border:2px solid var(--ink);padding:14px;margin-bottom:14px;box-shadow:4px 4px 0 var(--ink)}
+label{display:block;font:700 11px ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:12px 0 4px}
+input{width:100%;padding:11px;font:600 18px ui-monospace,Menlo,monospace;background:var(--bg);color:var(--ink);border:2px solid var(--ink);border-radius:2px}
+input:focus,#gr:focus{outline:3px solid var(--acc)}
+input.set{border-color:var(--ok)}
+.pos{position:relative}.list{position:absolute;left:0;right:0;top:100%;z-index:5;background:var(--card);border:2px solid var(--ink);border-top:0}
+.opt{padding:10px;font:15px ui-monospace,Menlo,monospace;cursor:pointer}.opt.on{background:var(--acc);color:#fff}
+.grains{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:3px}
+.g{padding:10px 2px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:700 14px Georgia,serif;cursor:pointer}
+.g small{display:block;font:11px ui-monospace,monospace;color:var(--mut)}
+.g.on{background:var(--acc);color:#fff;border-color:var(--acc)}.g.on small{color:#fff}
+.go{width:100%;margin-top:14px;padding:14px;background:var(--acc);color:#fff;border:2px solid var(--ink);font:700 17px Georgia,serif;cursor:pointer}
+.go:disabled{opacity:.4;cursor:not-allowed}
+.lnk{background:none;border:0;color:var(--acc);font:700 13px ui-monospace,monospace;cursor:pointer;padding:8px 0 0}
+.hide{display:none}.hint{font:12px ui-monospace,monospace;color:var(--mut);margin:6px 0}
+.msg{padding:10px;margin-top:10px;border:2px solid var(--ok);color:var(--ok);font:600 14px ui-monospace,monospace}
+.row{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line);font:13px ui-monospace,Menlo,monospace}
+.row.vd{text-decoration:line-through;opacity:.55}
+.hh{display:flex;justify-content:space-between;font:700 14px ui-monospace,monospace;gap:8px;flex-wrap:wrap}
+.sm{padding:7px 10px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:700 12px Georgia,serif;cursor:pointer;margin-top:8px}
+.timer{float:right;font:700 20px ui-monospace,monospace;color:var(--ok)}.timer.s{color:var(--bad)}
+nav{display:flex;gap:6px;margin-bottom:14px}.tb{flex:1;padding:10px 4px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:700 14px Georgia,serif;cursor:pointer}.tb.on{background:var(--ink);color:var(--bg)}
+select{width:100%;padding:10px;font:600 16px ui-monospace,Menlo,monospace;background:var(--bg);color:var(--ink);border:2px solid var(--ink)}
+.big{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sack{border:2px solid var(--ink);padding:10px;background:var(--bg)}.sack b{font-size:13px;display:block}.sack .n{font:700 28px ui-monospace,monospace;color:var(--acc)}.sack .n small{font-size:13px}.bar{height:8px;background:var(--line);margin-top:6px}.bar i{display:block;height:100%;background:var(--ok)}
+table{width:100%;border-collapse:collapse;font:13px ui-monospace,Menlo,monospace;margin:8px 0}th,td{padding:6px 4px;border-bottom:1px dashed var(--line);text-align:right}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-size:11px;text-transform:uppercase}.tt td{font-weight:700;border-top:2px solid var(--ink)}
+.msg.bad{border-color:var(--bad);color:var(--bad)}
+.tick{border:2px dashed #111;padding:14px;font:14px ui-monospace,Menlo,monospace;background:#fff;color:#111}.tick h3{margin:0 0 10px;text-align:center;font:700 15px Georgia,serif}.tr{display:flex;justify-content:space-between;gap:8px;padding:3px 0}.stamp{margin-top:10px;text-align:center;font-weight:700;border:2px solid #111;padding:6px}
+.tb,.g,.go,.sm,h1,h2,.tick h3{font-family:Impact,"Arial Narrow",Arial,sans-serif;letter-spacing:1px}
+.card{border-radius:12px}.go,.sm,.tb,input,select{border-radius:8px}.g{border-radius:999px;padding:8px 2px}.jn{display:block;font-size:20px}
+.sack{background:#111;color:#fff;border-radius:10px}.sack b{color:#fff;text-transform:uppercase;letter-spacing:1px}.sack .n{color:#ffb020}.sack .bar{background:#333}.sack .hint{color:#bbb}
+.timer{font-size:22px;background:#111;color:#ffb020;padding:2px 10px;border-radius:6px}.timer.s{color:#ff5a4d}
+@media print{body *{visibility:hidden}#hc,#hc *,#rep,#rep *,#slipc,#slipc *{visibility:visible}#hc,#rep,#slipc{position:absolute;left:0;top:0;width:100%;box-shadow:none}.no-print{display:none!important}}
+</style></head>
+<body><div class="wrap">
+<h1>🏀 SLAM DUNK GRAINS</h1>
+<p class="sub">Sintang Ballers Cooperative · Farmer → jersey # (1–4) → kg → Enter. Beat the shot clock. Esc clears.</p>
+<nav class="no-print"><button class="tb on" type="button" onclick="tab(0)">1 · Tip-Off</button><button class="tb" type="button" onclick="tab(1)">2 · Scoreboard</button><button class="tb" type="button" onclick="tab(2)">3 · Fast Break</button></nav>
+<div id="p1">
+<div class="card"><span class="timer" id="tm">⏱ 30</span><h2>New delivery · Shot clock</h2>
+<label for="fq">Farmer ID or name</label>
+<div class="pos"><input id="fq" autocomplete="off" placeholder="F001 or start typing a name"><div class="list" id="fl"></div></div>
+<label>Jersey # = grain (press 1–4)</label><div id="gr" tabindex="0" class="grains"></div>
+<label for="kg">Quantity (kg)</label><input id="kg" type="number" inputmode="numeric" min="1" placeholder="kg">
+<button class="lnk" id="nb" type="button">+ add note</button><input id="nt" class="hide" placeholder="Optional note (disputes, exceptions)">
+<button class="go" id="sv" type="button" disabled>Shoot! Save delivery ↵</button><div id="res"></div></div>
+<div class="card" id="hc"><h2>Instant replay · farmer history (for disputes)</h2>
+<div class="pos no-print"><input id="hq" autocomplete="off" placeholder="Search farmer ID or name"><div class="list" id="hl"></div></div>
+<div id="hist" class="hint">Pick a farmer to see every delivery on record.</div></div>
+<div class="card no-print"><h2>Play-by-play · latest deliveries</h2><div id="recent"></div></div></div>
+<div id="p3" class="hide">
+<div class="card no-print"><h2>New order · Fast break</h2>
+<label for="by">Buyer name</label><input id="by" autocomplete="off" placeholder="Buyer or company">
+<label for="bp">Phone (optional)</label><input id="bp" inputmode="tel" placeholder="09xx xxx xxxx">
+<label for="og">Grain</label><select id="og"></select><div class="hint" id="oav"></div>
+<label for="oq">Quantity (kg)</label><input id="oq" type="number" inputmode="numeric" min="1" placeholder="kg">
+<button class="go" id="ob" type="button">Check stock &amp; confirm (Game Slip) ↵</button><div id="orr"></div></div>
+<div class="card" id="slipc"><h2 class="no-print">Game Slip</h2><div id="slip" class="hint">Confirm an order to print its Game Slip.</div></div>
+<div class="card no-print"><h2>Game log · orders</h2><div id="ol"></div></div>
+</div>
+<div id="p2" class="hide">
+<div class="card no-print"><h2>🏟 Scoreboard · live available stock</h2><div class="big" id="stock"></div><div class="hint" id="upd"></div></div>
+<div class="card" id="rep"><h2>Season recap for the board</h2><div class="no-print"><label for="ms">Month</label><select id="ms"></select></div><div id="mrep"></div><button class="sm no-print" onclick="window.print()">Print summary</button></div>
+</div>
+</div>
+<script>
+const GR=["Palay","Mais","Munggo","Sorghum"];
+let S={f:[["F001","Aling Rosa Dela Cruz"],["F002","Mang Tonyo Reyes"],["F003","Nena Bautista"],["F004","Kuya Jun Santos"],["F005","Lola Pacita Ramos"]],d:[],n:1};
+try{const x=localStorage.getItem("sgcm1");if(x)S=JSON.parse(x)}catch(e){}
+S.o=S.o||[];S.b=S.b||[];S.m=S.m||1;
+if(!S.d.length){[["F001",0,850],["F002",0,620],["F003",1,400],["F004",2,150],["F005",0,300],["F002",1,275]].forEach((a,i)=>S.d.push({id:"D"+String(S.n++).padStart(4,"0"),f:a[0],g:GR[a[1]],kg:a[2],t:Date.now()-(i+1)*864e5/2,note:"",v:0}))}
+const save=()=>{try{localStorage.setItem("sgcm1",JSON.stringify(S))}catch(e){}};
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString("en-US");
+const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const nm=id=>(S.f.find(a=>a[0]==id)||[0,"?"])[1];
+const dt=t=>new Date(t).toLocaleString("en-PH",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
+let farmer=null,grain=0,t0=null,iv=null,hid=null;
+
+function start(){if(t0)return;t0=Date.now();iv=setInterval(()=>{const e=Math.floor((Date.now()-t0)/1000),m=$("#tm");m.textContent="⏱ "+Math.max(30-e,0);m.className="timer"+(e>=30?" s":"")},250)}
+function stop(){clearInterval(iv);t0=null;$("#tm").textContent="⏱ 30";$("#tm").className="timer"}
+
+function ta(inp,list,pick,allowNew,timed){
+ let items=[],hi=0;
+ const draw=()=>{
+  const q=inp.classList.contains("set")?"":inp.value.trim().toLowerCase();
+  items=S.f.filter(a=>!q||a[0].toLowerCase().includes(q)||a[1].toLowerCase().includes(q)).slice(0,5).map(a=>({id:a[0],label:a[0]+" · "+a[1]}));
+  if(allowNew&&q&&!S.f.some(a=>a[1].toLowerCase()==q)&&!/^f\d+$/.test(q))items.push({nw:inp.value.trim(),label:"＋ Add new farmer: "+inp.value.trim()});
+  hi=Math.max(0,Math.min(hi,items.length-1));
+  list.innerHTML=items.map((x,i)=>`<div class="opt ${i==hi?"on":""}" data-i="${i}">${E(x.label)}</div>`).join("");
+ };
+ function p(x){list.innerHTML="";pick(x)}
+ inp.addEventListener("input",()=>{hi=0;draw();if(timed)start()});
+ inp.addEventListener("focus",()=>{if(inp.classList.contains("set"))inp.select();draw()});
+ inp.addEventListener("blur",()=>{list.innerHTML=""});
+ inp.addEventListener("keydown",e=>{
+  if(e.key=="ArrowDown"){hi=Math.min(hi+1,items.length-1);draw();e.preventDefault()}
+  else if(e.key=="ArrowUp"){hi=Math.max(hi-1,0);draw();e.preventDefault()}
+  else if(e.key=="Enter"&&items[hi]){e.preventDefault();p(items[hi])}
+ });
+ list.onmousedown=e=>{const o=e.target.closest(".opt");if(o){e.preventDefault();p(items[+o.dataset.i])}};
+}
+
+const fq=$("#fq"),kg=$("#kg");
+fq.addEventListener("input",()=>{farmer=null;fq.classList.remove("set");chk()});
+ta(fq,$("#fl"),x=>{
+ if(x.nw){const id="F"+String(S.f.length+1).padStart(3,"0");S.f.push([id,x.nw]);save();x={id}}
+ farmer=x.id;fq.value=x.id+" · "+nm(x.id);fq.classList.add("set");chk();$("#gr").focus()
+},true,true);
+ta($("#hq"),$("#hl"),x=>{$("#hq").value=x.id+" · "+nm(x.id);hist(x.id)},false,false);
+
+$("#gr").innerHTML=GR.map((g,i)=>`<button type="button" tabindex="-1" class="g" data-i="${i}"><b class="jn">#${i+1}</b>${g}</button>`).join("");
+function setGrain(i){grain=i;document.querySelectorAll(".g").forEach(b=>b.classList.toggle("on",+b.dataset.i==i))}
+setGrain(0);
+$("#gr").addEventListener("click",e=>{const b=e.target.closest(".g");if(b){setGrain(+b.dataset.i);kg.focus()}});
+$("#gr").addEventListener("keydown",e=>{
+ if(e.key>="1"&&e.key<="4"){setGrain(+e.key-1);kg.focus();e.preventDefault()}
+ else if(e.key=="ArrowRight"){setGrain((grain+1)%4);e.preventDefault()}
+ else if(e.key=="ArrowLeft"){setGrain((grain+3)%4);e.preventDefault()}
+ else if(e.key=="Enter"){kg.focus();e.preventDefault()}
+});
+kg.addEventListener("input",()=>{start();chk()});
+function chk(){$("#sv").disabled=!(farmer&&+kg.value>0)}
+$("#nb").onclick=()=>{$("#nt").classList.toggle("hide");$("#nt").focus()};
+[kg,$("#nt")].forEach(el=>el.addEventListener("keydown",e=>{if(e.key=="Enter"){e.preventDefault();submit()}}));
+$("#sv").onclick=submit;
+document.addEventListener("keydown",e=>{if(e.key=="Escape"){reset();stop();$("#res").innerHTML="";fq.focus()}});
+
+function reset(){farmer=null;fq.value="";fq.classList.remove("set");kg.value="";$("#nt").value="";$("#nt").classList.add("hide");chk()}
+function submit(){
+ const q=+kg.value;if(!farmer||!(q>0))return;
+ const e=t0?Math.round((Date.now()-t0)/1000):0;
+ const d={id:"D"+String(S.n++).padStart(4,"0"),f:farmer,g:GR[grain],kg:q,t:Date.now(),note:$("#nt").value.trim(),v:0};
+ S.d.push(d);save();stop();
+ $("#res").innerHTML=`<div class="msg">${e<30?"🏀 SWISH!":"⏱ SHOT CLOCK VIOLATION"} ${d.id}: ${E(nm(d.f))} · ${d.g} · ${fmt(q)} kg · ${e}s · ${d.g} available now ${fmt(avail(d.g))} kg</div>`;
+ reset();recent();dash();if(hid==d.f)hist(hid);fq.focus()
+}
+function recent(){
+ $("#recent").innerHTML=[...S.d].sort((a,b)=>b.t-a.t).slice(0,6).map(x=>`<div class="row ${x.v?"vd":""}"><span>${x.id} · ${E(nm(x.f))}</span><span>${x.g} ${fmt(x.kg)} kg ${x.v?"":`<button class="sm" data-v="${x.id}">Void</button>`}</span></div>`).join("");
+}
+$("#recent").addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;const d=S.d.find(x=>x.id==b.dataset.v);if(d){if(avail(d.g)-d.kg<0){$("#res").innerHTML=`<div class="msg bad">🚫 FOUL! Cannot void ${d.id}: ${fmt(reserved(d.g))} kg of ${d.g} is reserved by confirmed orders. Cancel an order first.</div>`;return}d.v=1;save();recent();dash();if(hid)hist(hid)}});
+function hist(id){
+ hid=id;
+ const l=S.d.filter(x=>x.f==id).sort((a,b)=>b.t-a.t),ok=l.filter(x=>!x.v),tot={};
+ ok.forEach(x=>tot[x.g]=(tot[x.g]||0)+x.kg);
+ $("#hist").className="";
+ $("#hist").innerHTML=`<div class="hh"><span>${id} · ${E(nm(id))}</span><span>${ok.length} deliveries · ${fmt(ok.reduce((a,b)=>a+b.kg,0))} kg</span></div><div class="hint">${Object.entries(tot).map(([g,k])=>g+" "+fmt(k)+" kg").join(" · ")||"No deliveries yet."}</div>`
+ +l.map(x=>`<div class="row ${x.v?"vd":""}"><span>${dt(x.t)} · ${x.id}</span><span>${x.g} ${fmt(x.kg)} kg${x.note?" · "+E(x.note):""}${x.v?" · VOID":""}</span></div>`).join("")
+ +`<button class="sm no-print" onclick="window.print()">Print history</button>`;
+}
+const onHand=g=>S.d.filter(x=>x.g==g&&!x.v).reduce((a,b)=>a+b.kg,0);
+const reserved=g=>S.o.filter(x=>x.g==g&&x.s=="Confirmed").reduce((a,b)=>a+b.kg,0);
+const avail=g=>onHand(g)-reserved(g);
+const mk=t=>{const d=new Date(t);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")};
+const mlabel=k=>new Date(+k.slice(0,4),+k.slice(5)-1,1).toLocaleString("en-US",{month:"long",year:"numeric"});
+function tab(n){["p1","p2","p3"].forEach((p,i)=>$("#"+p).classList.toggle("hide",i!=n));document.querySelectorAll(".tb").forEach((b,i)=>b.classList.toggle("on",i==n));if(n==1)dash();else if(n==2){oSel();orders();$("#by").focus()}else fq.focus()}
+function dash(){
+ const tot=GR.reduce((a,g)=>a+avail(g),0),mx=Math.max(1,...GR.map(avail));
+ $("#stock").innerHTML=GR.map(g=>`<div class="sack"><b>${g}</b><div class="n">${fmt(avail(g))}<small> kg</small></div><div class="bar"><i style="width:${avail(g)/mx*100}%"></i></div><div class="hint">received ${fmt(onHand(g))} · reserved ${fmt(reserved(g))}</div></div>`).join("");
+ $("#upd").textContent="Total available: "+fmt(tot)+" kg · updated "+new Date().toLocaleTimeString("en-PH",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+ const cur=mk(Date.now()),keys=[...new Set([cur,...S.d.filter(x=>!x.v).map(x=>mk(x.t))])].sort().reverse(),ms=$("#ms"),sv=ms.value||cur;
+ ms.innerHTML=keys.map(k=>`<option value="${k}">${mlabel(k)}</option>`).join("");ms.value=keys.includes(sv)?sv:cur;
+ report(ms.value);
+}
+$("#ms").onchange=e=>report(e.target.value);
+function report(k){
+ const L=S.d.filter(x=>!x.v&&mk(x.t)==k),T=L.reduce((a,b)=>a+b.kg,0);
+ const pk=mk(new Date(+k.slice(0,4),+k.slice(5)-2,1)),P=S.d.filter(x=>!x.v&&mk(x.t)==pk).reduce((a,b)=>a+b.kg,0);
+ const ch=P?Math.round((T-P)/P*100):null,by={};
+ L.forEach(x=>by[x.f]=(by[x.f]||0)+x.kg);
+ const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,3);
+ $("#mrep").innerHTML=`<div class="hh"><span>${mlabel(k)}</span><span>Sintang Ballers Cooperative</span></div>
+<table><tr><th>Grain</th><th>Deliveries</th><th>Received (kg)</th><th>Share</th></tr>${GR.map(g=>{const a=L.filter(x=>x.g==g),s=a.reduce((p,c)=>p+c.kg,0);return `<tr><td>${g}</td><td>${a.length}</td><td>${fmt(s)}</td><td>${T?Math.round(s/T*100):0}%</td></tr>`}).join("")}<tr class="tt"><td>Total</td><td>${L.length}</td><td>${fmt(T)}</td><td>${T?100:0}%</td></tr></table>
+<div class="row"><span>Active farmers</span><span>${Object.keys(by).length}</span></div>
+<div class="row"><span>vs ${mlabel(pk)}</span><span>${ch===null?"no earlier data":(ch>=0?"+":"")+ch+"%"}</span></div>
+<div class="row"><span>Top farmers</span><span>${top.map(([f,q])=>E(nm(f))+" "+fmt(q)+" kg").join(", ")||"—"}</span></div>
+<div class="row"><span>Reserved for orders</span><span>${fmt(GR.reduce((a,g)=>a+reserved(g),0))} kg</span></div>
+<div class="row"><span>Available stock today</span><span>${fmt(GR.reduce((a,g)=>a+avail(g),0))} kg</span></div>`;
+}
+function oSel(){const o=$("#og"),v=o.value;o.innerHTML=GR.map(g=>`<option>${g}</option>`).join("");o.value=v||GR[0];oav()}
+function oav(){const g=$("#og").value;$("#oav").textContent="Available now: "+fmt(avail(g))+" kg (received "+fmt(onHand(g))+" − reserved "+fmt(reserved(g))+")"}
+$("#og").onchange=oav;
+function placeOrder(){
+ const nv=$("#by").value.trim(),g=$("#og").value,q=+$("#oq").value,r=$("#orr");
+ if(!nv||!(q>0)){r.innerHTML=`<div class="msg bad">Enter the buyer name and a quantity above 0.</div>`;return}
+ const a=avail(g);
+ if(q>a){r.innerHTML=`<div class="msg bad">🚫 FOUL! Order blocked: ${fmt(q)} kg of ${g} requested, but only ${fmt(a)} kg is available. ${a>0?"Lower the quantity to "+fmt(a)+" kg or less.":"There is no stock to reserve."}</div>`;return}
+ let b=S.b.find(x=>x.n.toLowerCase()==nv.toLowerCase());
+ if(!b){b={id:"B"+String(S.b.length+1).padStart(3,"0"),n:nv,p:$("#bp").value.trim()};S.b.push(b)}
+ const o={id:"ORD-"+String(S.m++).padStart(4,"0"),b:b.id,g,kg:q,t:Date.now(),s:"Confirmed"};
+ S.o.push(o);save();
+ r.innerHTML=`<div class="msg">🏀 SCORE! ${o.id} confirmed. ${fmt(q)} kg of ${g} reserved, ${fmt(avail(g))} kg left.</div>`;
+ slip(o.id);orders();oav();dash();$("#oq").value="";
+}
+function slip(id){
+ const o=S.o.find(x=>x.id==id),b=S.b.find(x=>x.id==o.b);
+ $("#slip").className="";
+ $("#slip").innerHTML=`<div class="tick"><h3>🏀 SINTANG BALLERS COOPERATIVE<br>GAME SLIP</h3><div class="tr"><span>Order no.</span><b>${o.id}</b></div><div class="tr"><span>Date</span><span>${dt(o.t)}</span></div><div class="tr"><span>Buyer</span><span>${E(b.n)}</span></div>${b.p?`<div class="tr"><span>Phone</span><span>${E(b.p)}</span></div>`:""}<div class="tr"><span>Grain</span><span>${o.g}</span></div><div class="tr"><span>Quantity</span><b>${fmt(o.kg)} kg</b></div><div class="tr"><span>Status</span><b>${o.s.toUpperCase()}</b></div><div class="stamp">${o.s=="Confirmed"?"FINAL SCORE: STOCK VERIFIED AND RESERVED":"TIMEOUT: CANCELLED, STOCK RELEASED"}</div></div><button class="sm no-print" onclick="window.print()">Print Game Slip</button>`;
+}
+function orders(){
+ $("#ol").innerHTML=S.o.length?[...S.o].reverse().map(o=>{const b=S.b.find(x=>x.id==o.b);return `<div class="row ${o.s=="Cancelled"?"vd":""}"><span>${o.id} · ${E(b?b.n:"?")}</span><span>${o.g} ${fmt(o.kg)} kg <button class="sm" data-s="${o.id}">Slip</button>${o.s=="Confirmed"?` <button class="sm" data-c="${o.id}">Cancel</button>`:""}</span></div>`}).join(""):`<div class="hint">No orders yet.</div>`;
+}
+$("#ol").addEventListener("click",e=>{
+ const s=e.target.closest("[data-s]"),c=e.target.closest("[data-c]");
+ if(s)slip(s.dataset.s);
+ if(c){const o=S.o.find(x=>x.id==c.dataset.c);if(o&&o.s=="Confirmed"){o.s="Cancelled";save();orders();slip(o.id);oav();dash()}}
+});
+$("#ob").onclick=placeOrder;
+$("#oq").addEventListener("keydown",e=>{if(e.key=="Enter"){e.preventDefault();placeOrder()}});
+$("#by").addEventListener("keydown",e=>{if(e.key=="Enter"){e.preventDefault();$("#oq").focus()}});
+recent();dash();oSel();orders();fq.focus();
+</script></body></html>
